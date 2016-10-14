@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">D4H™ LIVE</string>
+    <string name="loading">Loading…</string>
+    <string name="connect_smartphone_message">You must have a smartphone connected to use this feature.</string>
+    <string name="connect_smartphone_calltoaction">CONNECT PHONE</string>
+    <string name="no_gps_fix_message">You do not have a GPS fix. Move to an area with open sky.</string>
+    <string name="searching_for_gps_message">Searching for GPS</string>
+    <string name="no_web_message">You do not have a web connection. Check Phone/Tablet for connectivity.</string>
+    <string name="searching_for_web_message">Searching for Connection</string>
+</resources>

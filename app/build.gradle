@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.0"
+
+    defaultConfig {
+        applicationId "com.sarscene.triage"
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.reconinstruments.app:recon-application:4.4.0'
+    compile 'com.reconinstruments.ui:recon-ui:4.4.0'
+    provided 'com.reconinstruments.os:recon-platform:4.4.0'
+}
+
+repositories {
+    jcenter{
+        url "http://jcenter.bintray.com/"
+    }
+    maven {
+        url "http://repo.reconinstruments.com/artifactory/libs-release"
+    }
+}
