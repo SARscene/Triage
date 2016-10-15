@@ -10,11 +10,12 @@ import com.sarscene.triage.d4h.models.Channel;
 public class PhotoFileObserver extends FileObserver {
     public static final String PHOTO_USER_FULL_PATH;
     public static final String TAG = PhotoFileObserver.class.getName();
-    private PhotoUploader photoUploader;
 
     static {
         PHOTO_USER_FULL_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString() + "/Camera";
     }
+
+    private PhotoUploader photoUploader;
 
     public PhotoFileObserver(ContextWrapper context, Channel channel) {
         super(PHOTO_USER_FULL_PATH, FileObserver.CLOSE_WRITE);
@@ -31,6 +32,6 @@ public class PhotoFileObserver extends FileObserver {
 
     public void onEvent(int event, String path) {
         Log.i(TAG, "File changed: " + path);
-        this.photoUploader.photoFolderEvent(PHOTO_USER_FULL_PATH + "/" + path);
+        //todo: new casualty, set the filepath
     }
 }

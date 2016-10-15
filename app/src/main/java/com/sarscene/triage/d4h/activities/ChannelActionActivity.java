@@ -6,58 +6,27 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.sarscene.triage.R;
-import com.sarscene.triage.PhotoFileObserver;
-import com.sarscene.triage.d4h.AuthenticationManager;
-import com.sarscene.triage.d4h.api.HUDManager;
-import com.sarscene.triage.d4h.api.PublishManager;
-import com.sarscene.triage.d4h.api.PublishManager.PublishType;
-import com.sarscene.triage.d4h.models.Channel;
-import com.sarscene.triage.d4h.models.User;
 import com.reconinstruments.os.connectivity.HUDConnectivityManager;
 import com.reconinstruments.ui.list.SimpleListActivity;
 import com.reconinstruments.ui.list.StandardListItem;
+import com.sarscene.triage.PhotoFileObserver;
+import com.sarscene.triage.R;
+import com.sarscene.triage.d4h.AuthenticationManager;
+import com.sarscene.triage.d4h.api.HUDManager;
+import com.sarscene.triage.d4h.api.TypeManager;
+import com.sarscene.triage.d4h.api.TypeManager.SubType;
+import com.sarscene.triage.d4h.models.Channel;
+import com.sarscene.triage.d4h.models.User;
 
 import org.json.JSONException;
 
 public class ChannelActionActivity extends SimpleListActivity {
 
     static final String TAG = ChannelActionActivity.class.getName();
-    HUDConnectivityManager hudConnectivityManager;
     public Channel channel;
+    HUDConnectivityManager hudConnectivityManager;
     private boolean mAlreadyStarted;
     private PhotoFileObserver mPhotoFileObserver;
-
-    public class ListItem extends StandardListItem {
-        PublishType publishType;
-
-        public ListItem(String text, PublishType publishType){
-            super(text);
-            this.publishType = publishType;
-        }
-
-        public void onClick(Context context) {
-            CharSequence text = "";
-            try {
-                switch (publishType) {
-                    case CHAT:
-                        PublishManager.chat(channel, "This is a chat");
-                        text = "This is a chat";
-                        break;
-                    case LOG:
-                        PublishManager.log(channel, "This is a log");
-                        text = "This is a log";
-                        break;
-                }
-            } catch (JSONException e) {
-                Log.e(TAG, e.getMessage());
-            }
-//            context.startActivity(new Intent(context, activityClass));
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -119,8 +88,39 @@ public class ChannelActionActivity extends SimpleListActivity {
 
     private void populateListView() {
         setContents(
-            new ListItem("Chat something", PublishType.CHAT),
-            new ListItem("Log something", PublishType.LOG)
+                new ListItem("Chat something", SubType.CHAT),
+                new ListItem("Log something", SubType.LOG)
         );
+    }
+
+    public class ListItem extends StandardListItem {
+        SubType subType;
+
+        public ListItem(String text, SubType subType) {
+            super(text);
+            this.subType = subType;
+        }
+
+        public void onClick(Context context) {
+            CharSequence text = "";
+            try {
+                switch (subType) {
+                    case CHAT:
+                        TypeManager.chat(channel, "This is a chat");
+                        text = "This is a chat";
+                        break;
+                    case LOG:
+                        TypeManager.log(channel, "This is a log");
+                        text = "This is a log";
+                        break;
+                }
+            } catch (JSONException e) {
+                Log.e(TAG, e.getMessage());
+            }
+//            context.startActivity(new Intent(context, activityClass));
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 }

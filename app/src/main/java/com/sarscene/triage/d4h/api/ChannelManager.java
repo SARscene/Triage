@@ -2,10 +2,10 @@ package com.sarscene.triage.d4h.api;
 
 import android.util.Log;
 
-import com.sarscene.triage.d4h.models.Channel;
-import com.sarscene.triage.d4h.models.ChannelSettings;
 import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
 import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
+import com.sarscene.triage.d4h.models.Channel;
+import com.sarscene.triage.d4h.models.ChannelSettings;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ChannelManager {
-    static final String TAG = PublishManager.class.getName();
+    static final String TAG = TypeManager.class.getName();
     static final String CHANNEL_PATH = "request/";
 
     ChannelManager() {
