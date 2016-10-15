@@ -8,38 +8,15 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.reconinstruments.os.connectivity.HUDConnectivityManager;
 import com.sarscene.triage.R;
 import com.sarscene.triage.d4h.api.AuthenticationManager;
 import com.sarscene.triage.d4h.api.HUDManager;
-import com.reconinstruments.os.connectivity.HUDConnectivityManager;
 
 public class LauncherActivity extends Activity {
     static final String TAG = LauncherActivity.class.getName();
     FlowState mCurrentState;
     HUDConnectivityManager hudConnectivityManager;
-
-    private enum FlowState {
-        LOADING,
-        CONNECT_SMARTPHONE,
-        NO_WEB,
-    }
-
-    class LoginConnectTask extends AsyncTask<Void, Void, Boolean> {
-        LoginConnectTask() {
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            return AuthenticationManager.login(
-                   getResources().getString(R.string.d4hlive_username),
-                    getResources().getString(R.string.d4hlive_password)
-                );
-        }
-
-        protected void onPostExecute(Boolean responseStatus) {
-            LauncherActivity.this.postLogin(responseStatus);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +93,29 @@ public class LauncherActivity extends Activity {
             case LOADING:
                 showView(R.id.loader);
                 break;
+        }
+    }
+
+    private enum FlowState {
+        LOADING,
+        CONNECT_SMARTPHONE,
+        NO_WEB,
+    }
+
+    class LoginConnectTask extends AsyncTask<Void, Void, Boolean> {
+        LoginConnectTask() {
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            return AuthenticationManager.login(
+                    getResources().getString(R.string.d4hlive_username),
+                    getResources().getString(R.string.d4hlive_password)
+            );
+        }
+
+        protected void onPostExecute(Boolean responseStatus) {
+            LauncherActivity.this.postLogin(responseStatus);
         }
     }
 }

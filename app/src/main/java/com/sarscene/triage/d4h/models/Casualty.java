@@ -16,7 +16,6 @@ public class Casualty implements Serializable {
     }
 
     boolean setStatus(CasualtyStatus newStatus) {
-
         return true;
     }
 }

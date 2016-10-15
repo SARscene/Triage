@@ -93,6 +93,11 @@ public class ChannelActionActivity extends SimpleListActivity {
         );
     }
 
+    public void promptPhoto() {
+        Intent intent = new Intent("com.reconinstruments.camera");
+        startActivity(intent);
+    }
+
     public class ListItem extends StandardListItem {
         SubType subType;
 
@@ -113,6 +118,10 @@ public class ChannelActionActivity extends SimpleListActivity {
                         TypeManager.log(channel, "This is a log");
                         text = "This is a log";
                         break;
+                    case TRIAGE:
+                        initPhotoObserver();
+                        promptPhoto();
+                        //See PhotoFileObserver.onEvent() for the rest
                 }
             } catch (JSONException e) {
                 Log.e(TAG, e.getMessage());
