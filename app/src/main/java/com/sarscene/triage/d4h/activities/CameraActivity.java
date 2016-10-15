@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
 import com.reconinstruments.ui.carousel.CarouselActivity;
 import com.reconinstruments.ui.carousel.CarouselItem;
 import com.reconinstruments.ui.carousel.StandardCarouselItem;
@@ -27,6 +28,17 @@ public class CameraActivity extends CarouselActivity {
     CamcorderProfile profile;
 
     CarouselItem photoItem;
+    PictureCallback jpegSavedCallback = new PictureCallback() {
+        public void onPictureTaken(byte[] data, Camera camera) {
+            Uri uri = Storage.insertJpeg(CameraActivity.this, data, System.currentTimeMillis());
+            preview.setCamera(camera, profile);
+            closeCamera();
+            Intent intent = new Intent();
+            intent.putExtra("data", uri);
+            setResult(2, intent);
+            finish();
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,9 +56,9 @@ public class CameraActivity extends CarouselActivity {
         preview = (CameraPreview) findViewById(R.id.preview);
         modeSwitchView = (FrameLayout) findViewById(R.id.mode_switcher);
 
-        try{
+        try {
             profile = CamcorderProfile.get(CamcorderProfile.QUALITY_720P);
-        } catch(RuntimeException e){
+        } catch (RuntimeException e) {
             profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
         }
 
@@ -71,30 +83,18 @@ public class CameraActivity extends CarouselActivity {
         closeCamera();
     }
 
-    PictureCallback jpegSavedCallback = new PictureCallback() {
-        public void onPictureTaken(byte[] data, Camera camera) {
-            Uri uri = Storage.insertJpeg(CameraActivity.this, data, System.currentTimeMillis());
-            preview.setCamera(camera, profile);
-            closeCamera();
-            Intent intent=new Intent();
-            intent.putExtra("data", uri);
-            setResult(2, intent);
-            finish();
-        }
-    };
-
     public void openCamera() {
         try {
             camera = Camera.open();
-        } catch(RuntimeException ex) {
+        } catch (RuntimeException ex) {
             Toast.makeText(this, "Failed to open camera", Toast.LENGTH_SHORT).show();
         }
-        if(camera!=null)
+        if (camera != null)
             preview.setCamera(camera, profile);
     }
 
     public void closeCamera() {
-        if(camera != null) {
+        if (camera != null) {
             camera.stopPreview();
             camera.release();
             camera = null;

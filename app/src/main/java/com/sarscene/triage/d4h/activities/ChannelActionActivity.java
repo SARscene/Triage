@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.reconinstruments.ui.list.SimpleListActivity;
 import com.reconinstruments.ui.list.StandardListItem;
-import com.sarscene.triage.PhotoFileObserver;
 import com.sarscene.triage.R;
 import com.sarscene.triage.d4h.AuthenticationManager;
 import com.sarscene.triage.d4h.api.TypeManager;
@@ -23,40 +22,6 @@ public class ChannelActionActivity extends SimpleListActivity {
     static final String TAG = ChannelActionActivity.class.getName();
 
     public Channel channel;
-
-    public class ListItem extends StandardListItem {
-        SubType subType;
-
-        public ListItem(String text, SubType subType) {
-            super(text);
-            this.subType = subType;
-        }
-
-        public void onClick(Context context) {
-            CharSequence text = "";
-            try {
-                switch (subType) {
-                    case CHAT:
-                        TypeManager.chat(channel, "This is a chat");
-                        text = "This is a chat";
-                        break;
-                    case LOG:
-                        TypeManager.log(channel, "This is a log");
-                        text = "This is a log";
-                        break;
-                    case TRIAGE:
-                        launchCamera();
-                        break;
-                }
-            } catch (JSONException e) {
-                Log.e(TAG, e.getMessage());
-            }
-//            context.startActivity(new Intent(context, activityClass));
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
-    }
 
     @Override
 
@@ -98,9 +63,9 @@ public class ChannelActionActivity extends SimpleListActivity {
 
     private void populateListView() {
         setContents(
-            new ListItem("Triage something", SubType.TRIAGE),
-            new ListItem("Chat something", SubType.CHAT),
-            new ListItem("Log something", SubType.LOG)
+                new ListItem("Triage something", SubType.TRIAGE),
+                new ListItem("Chat something", SubType.CHAT),
+                new ListItem("Log something", SubType.LOG)
         );
     }
 
@@ -140,9 +105,8 @@ public class ChannelActionActivity extends SimpleListActivity {
                         text = "This is a log";
                         break;
                     case TRIAGE:
-                        initPhotoObserver();
-                        promptPhoto();
-                        //See PhotoFileObserver.onEvent() for the rest
+                        launchCamera();
+                        break;
                 }
             } catch (JSONException e) {
                 Log.e(TAG, e.getMessage());

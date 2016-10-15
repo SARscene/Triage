@@ -2,10 +2,9 @@ package com.sarscene.triage.d4h.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.location.Criteria;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,9 +16,7 @@ import com.reconinstruments.ui.R;
 import com.reconinstruments.ui.carousel.CarouselActivity;
 import com.reconinstruments.ui.carousel.CarouselItem;
 import com.reconinstruments.ui.carousel.CarouselViewPager;
-import com.sarscene.triage.PhotoFileObserver;
 import com.sarscene.triage.d4h.api.HUDManager;
-import com.sarscene.triage.d4h.models.Casualty;
 import com.sarscene.triage.d4h.models.CasualtyStatus;
 
 public class TriageActivity extends CarouselActivity {

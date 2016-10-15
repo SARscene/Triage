@@ -18,13 +18,14 @@ public class Storage {
     public static final String JPEG = ".jpg";
 
     public static SimpleDateFormat dateFormat;
+
     static {
         dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US);
         dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
     }
 
     public static ContentValues getPhotoData(long dateTaken) {
-        String title = "IMG_"+dateFormat.format(dateTaken);
+        String title = "IMG_" + dateFormat.format(dateTaken);
         String filename = title + JPEG;
         String path = DIRECTORY + '/' + filename;
         ContentValues photoValues = new ContentValues(5);
