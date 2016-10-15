@@ -14,33 +14,25 @@ import android.widget.Toast;
 import com.reconinstruments.os.connectivity.HUDConnectivityManager;
 import com.reconinstruments.ui.carousel.CarouselActivity;
 import com.reconinstruments.ui.carousel.CarouselItem;
-import com.reconinstruments.ui.carousel.CarouselViewPager;
-import com.sarscene.triage.d4h.api.HUDManager;
+import com.sarscene.triage.R;
 import com.sarscene.triage.d4h.models.CasualtyStatus;
+import com.sarscene.triage.d4h.models.Channel;
 
 public class TriageActivity extends CarouselActivity {
 
     static final String TAG = TriageActivity.class.getName();
+    public static Channel channel;
+    public String photoPath;
     HUDConnectivityManager hudConnectivityManager;
     private boolean mAlreadyStarted;
     private Uri data;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(com.reconinstruments.ui.R.layout.carousel_host);
-        getCarousel().setPageMargin(30);
-        getCarousel().setVisibility(View.VISIBLE);
-        Bundle extras = getIntent().getExtras();
-        Intent intentIncoming = getIntent();
-        if (extras != null) {
-            this.data = intentIncoming.getParcelableExtra("data");
-        }
-
-        hudConnectivityManager = HUDManager.getInstance();
-        Toast.makeText(this.getApplicationContext(), "Triage mode", Toast.LENGTH_SHORT).show();
-        this.requestLocation();
-        this.promptStatus();
+    public static void pushToDashboard(Context context, CarouselItem item) {
+        Log.e(TAG, "pushtodashboard");
+        //TODO: TypeManager.log(channel, "This is a log");
+        //todo return status to parent so parent can save and restart at capture screen
+        Toast.makeText(context, "Sending status \"" + item.toString() + "\" to ICS...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Success.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -55,7 +47,23 @@ public class TriageActivity extends CarouselActivity {
         super.onDestroy();
     }
 
-    private String getPhotoPath() {
+    public void fetchChannel() {
+        Bundle extras = getIntent().getExtras();
+        Intent intentIncoming = getIntent();
+        if (extras != null) {
+            channel = intentIncoming.getParcelableExtra("channel");
+        }
+    }
+
+    private void fetchPhotoPath() {
+
+        Bundle extras = getIntent().getExtras();
+        Intent intentIncoming = getIntent();
+        if (extras != null) {
+            this.data = intentIncoming.getParcelableExtra("data");
+        }
+
+        /*
         Bundle extras = getIntent().getExtras();
         Intent intentIncoming = getIntent();
         if (extras != null) {
@@ -65,12 +73,22 @@ public class TriageActivity extends CarouselActivity {
         } else {
             return null;
         }
+        */
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fetchPhotoPath();
+        fetchChannel();
+        promptStatus();
     }
 
     private void promptStatus() {
         Log.e(TAG, "Prompting victim status...");
-        /*TextView title = (TextView)findViewById(R.layout.id);
-        title.setText("ALL TIME BEST");*/
+        setContentView(R.layout.carousel_host_stat);
+        TextView title = (TextView) findViewById(R.id.title);
+        title.setText("Casualty Status");
         getCarousel().setContents(
                 new ListItem(CasualtyStatus.MINOR),
                 new ListItem(CasualtyStatus.DELAYED),
@@ -91,48 +109,41 @@ public class TriageActivity extends CarouselActivity {
         //TODO: locManager.requestSingleUpdate(criteria, this);
     }
 
-    public class ListItem extends CarouselItem {
+    static class ListItem extends CarouselItem {
+        String label;
         CasualtyStatus status;
-        CarouselViewPager carouselViewPager;
-        TextView label;
+        TextView valueText;
 
-        ListItem(CasualtyStatus status) {
-            super();
+        public ListItem(CasualtyStatus status) {
             this.status = status;
-            this.carouselViewPager = getCarousel();
-            this.label = new TextView(getApplicationContext());
-        }
-
-        public void onClick(Context context) {
-            //todo return status to parent
-            Toast.makeText(context, "Triage mode is:" + this.status.name(), Toast.LENGTH_SHORT).show();
-        }
-
-        public int getLayoutId() {
-            return com.sarscene.triage.R.layout.carousel_item;
+            this.label = this.status.name();
         }
 
         @Override
+        public int getLayoutId() {
+            return R.layout.carousel_item_stat;
+        }
+        @Override
         public void updateView(View view) {
-            Toast.makeText(getApplicationContext(), "Updateview TriageActivity", Toast.LENGTH_SHORT).show();
+            this.valueText = (TextView) view.findViewById(R.id.label);
+            this.valueText.setText(this.status.name());
             view.setBackgroundColor(this.status.getCardColor());
-            view.setContentDescription(this.status.name());
-            this.label.setText(this.status.name());
-            this.label.setBackgroundColor(this.status.getCardColor());
-            this.label.setTextColor(this.status.getTextColor());
-            this.label.setVisibility(View.VISIBLE);
-            view.setVisibility(View.VISIBLE);
+            this.valueText.setTextColor(this.status.getTextColor());
+            this.valueText.setVisibility(View.VISIBLE);
         }
 
         @Override
         public void updateViewForPosition(View view, POSITION position) {
-            if (position == POSITION.CENTER) {
-                view.setVisibility(View.VISIBLE);
-                label.setVisibility(View.VISIBLE);
-            } else {
-                view.setVisibility(View.GONE);
-                label.setVisibility(View.GONE);
-            }
+            this.valueText.setVisibility(View.VISIBLE);
+        }
+
+        public void onClick(Context context) {
+            pushToDashboard(context, this);
+        }
+
+        public String toString() {
+            return this.status.name();
         }
     }
+
 }

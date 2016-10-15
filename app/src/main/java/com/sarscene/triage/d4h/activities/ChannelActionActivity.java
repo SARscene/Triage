@@ -63,9 +63,10 @@ public class ChannelActionActivity extends SimpleListActivity {
 
     private void populateListView() {
         setContents(
-                new ListItem("Triage something", SubType.TRIAGE),
-                new ListItem("Chat something", SubType.CHAT),
-                new ListItem("Log something", SubType.LOG)
+                new ListItem("Triage", SubType.TRIAGE),
+                new ListItem("Assessment", SubType.ASSESSMENT),
+                new ListItem("Chat", SubType.CHAT),
+                new ListItem("Log", SubType.LOG)
         );
     }
 

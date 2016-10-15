@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="428px"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/valuecontainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
+        <!-- add equal sized space on left so that title can be centered and view is still measurable -->
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:padding="30px"
+            android:textSize="64px"
+            tools:text="34.5" />
+    </LinearLayout>
+
+</RelativeLayout>

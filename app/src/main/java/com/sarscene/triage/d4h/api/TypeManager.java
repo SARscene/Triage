@@ -219,6 +219,12 @@ public class TypeManager {
             public String getSubType() {
                 return "triage";
             }
+        },
+        ASSESSMENT {
+            @Override
+            public String getSubType() {
+                return "assessment";
+            }
         };
 
         abstract public String getSubType();
