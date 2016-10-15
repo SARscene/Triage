@@ -39,7 +39,6 @@ public class ChannelManager {
                 // get the array
                 JSONArray jsonChannels = jsonResponse.optJSONArray("documents");
 
-
                 // iterate over the array and retrieve single person instances
                 for(int i = 0; i < jsonChannels.length(); i++){
                     JSONObject jsonChannel = jsonChannels.getJSONObject(i);

@@ -1,6 +1,8 @@
 package com.sarscene.triage.d4h.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -14,8 +16,7 @@ public class TriageActivity extends SimpleListActivity {
     static final String TAG = TriageActivity.class.getName();
     HUDConnectivityManager hudConnectivityManager;
     private boolean mAlreadyStarted;
-    private PhotoFileObserver mPhotoFileObserver;
-    private String photoFullPath;
+    private Uri data;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class TriageActivity extends SimpleListActivity {
         Bundle extras = getIntent().getExtras();
         Intent intentIncoming = getIntent();
         if (extras != null) {
-            this.photoFullPath = intentIncoming.getParcelableExtra(PhotoFileObserver.PHOTO_USER_FULL_PATH);
+            this.data = intentIncoming.getParcelableExtra("data");
         }
 
         hudConnectivityManager = HUDManager.getInstance();

@@ -52,7 +52,7 @@ public class ChannelActivity extends SimpleListActivity {
         ChannelListItem addItem;
 
         for (Channel channel : channels) {
-            if (null != channel.getRoomDbName()) {
+            if (null != channel.getRoomDbName() && !channel.getRoomDbNameId().equalsIgnoreCase("null")) {
                 addItem = new ChannelListItem(channel.getRoomDbNameId(), channel);
                 listItems.add(addItem);
             }

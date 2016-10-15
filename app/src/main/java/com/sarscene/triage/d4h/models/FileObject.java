@@ -16,14 +16,14 @@ import java.io.Serializable;
  *   "email": "john.doe@example.com"
  *  }
  */
-public class File extends APIObject implements Serializable {
+public class FileObject extends APIObject implements Serializable {
     static final String TAG = UserData.class.getName();
     private String rev;
     private String mimetype;
     private String size;
     private String channel;
 
-    public File(JSONObject json) {
+    public FileObject(JSONObject json) {
         super(json);
         try {
             parse(json);

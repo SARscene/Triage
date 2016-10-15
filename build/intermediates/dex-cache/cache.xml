@@ -12,24 +12,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/amcrober/Development/triage/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="22.0.0"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0_dd760174d0d1ea41e9a9809df9275f0cbf5797f7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/amcrober/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="22.0.0"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0_514c22f0b8b4c6914cf8cb8e142919d89e115d14.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/amcrober/Development/triage/app/build/intermediates/exploded-aar/com.reconinstruments.ui/recon-ui/4.4.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -45,6 +27,24 @@
         revision="22.0.0"
         sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
         <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-22.2.0_443f2dd19244997974faf74cab352e204c31654d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/amcrober/Development/triage/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.0"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0_dd760174d0d1ea41e9a9809df9275f0cbf5797f7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/amcrober/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.0"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0_514c22f0b8b4c6914cf8cb8e142919d89e115d14.jar" />
     </item>
     <item
         is-multidex="false"

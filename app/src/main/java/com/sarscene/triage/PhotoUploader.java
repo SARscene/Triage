@@ -7,7 +7,7 @@ import android.util.Log;
 import com.sarscene.triage.d4h.api.FileManager;
 import com.sarscene.triage.d4h.api.TypeManager;
 import com.sarscene.triage.d4h.models.Channel;
-import com.sarscene.triage.d4h.models.File;
+import com.sarscene.triage.d4h.models.FileObject;
 
 import org.json.JSONException;
 
@@ -23,17 +23,17 @@ public class PhotoUploader {
     }
 
     void photoFolderEvent(String filepath) {
-        Log.d(TAG, "File changed: " + filepath);
+        Log.d(TAG, "FileObject changed: " + filepath);
         new UploadFileTask(mChannel, filepath).execute();
     }
 
     class UploadFileTask extends AsyncTask<String, Void, Boolean> {
         public UploadFileTask(Channel channel, String filepath) {
-            File file = FileManager.upload(channel, filepath);
+            FileObject file = FileManager.upload(channel, filepath);
             try {
                 TypeManager.logWithAttachment(
                         channel,
-                        "File uploaded at " + Long.toString(System.currentTimeMillis()),
+                        "FileObject uploaded at " + Long.toString(System.currentTimeMillis()),
                         file);
             } catch (JSONException e) {
                 Log.d(TAG, e.getMessage());
