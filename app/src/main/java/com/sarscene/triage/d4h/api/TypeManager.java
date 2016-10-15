@@ -2,11 +2,11 @@ package com.sarscene.triage.d4h.api;
 
 import android.util.Log;
 
-import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
-import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 import com.sarscene.triage.d4h.models.Channel;
 import com.sarscene.triage.d4h.models.File;
 import com.sarscene.triage.d4h.models.LogObject;
+import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
+import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +18,55 @@ public class TypeManager {
     static final String INFO_ITEM_PATH = "info_item/";
 
     TypeManager() {
+    }
+
+    public enum Type {
+        PUBLISH {
+            @Override
+            public String getType() {
+                return "publish";
+            }
+            @Override
+            public String getTypePath() {
+                return getType() + "/";
+            }
+        },
+        INFO_ITEM {
+            @Override
+            public String getType() {
+                return "info_item";
+            }
+            @Override
+            public String getTypePath() {
+                return getType() + "/";
+            }
+        };
+
+        abstract public String getType();
+        abstract public String getTypePath();
+    }
+
+    public enum SubType {
+        LOG {
+            @Override
+            public String getSubType() {
+                return "log";
+            }
+        },
+        CHAT {
+            @Override
+            public String getSubType() {
+                return "chat";
+            }
+        },
+        TRIAGE {
+            @Override
+            public String getSubType() {
+                return "triage";
+            }
+        };
+
+        abstract public String getSubType();
     }
 
     public static LogObject chat(Channel channel, String message) throws JSONException {
@@ -33,7 +82,7 @@ public class TypeManager {
     }
 
     public static LogObject triage(Channel channel, String message) throws JSONException {
-        return publishInfoItem(channel, buildInfoItem(SubType.TRIAGE, message, null));
+        return publishInfoItem(channel, buildInfoItem(SubType.TRIAGE, message));
     }
 
     private static LogObject publish(Channel channel, byte[] requestBody) {
@@ -93,11 +142,11 @@ public class TypeManager {
      * "subtype":"triage",
      * "action":"save",
      * "document":{
-     * "name":"c,c,c,c",
+     *  "name":"c,c,c,c",
      * }
      */
-    private static byte[] buildInfoItem(SubType subType, String message, File attachment) throws JSONException {
-        JSONObject document = buildPublishDocumentBody(subType, message, attachment);
+    private static byte[] buildInfoItem(SubType subType, String message) throws JSONException {
+        JSONObject document = buildInfoItemDocumentBody(subType, message);
 
         JSONObject requestBody = new JSONObject();
         requestBody.put("type", "info_item");
@@ -106,6 +155,15 @@ public class TypeManager {
         requestBody.put("document", document);
 
         return requestBody.toString().getBytes();
+    }
+
+    private static JSONObject buildInfoItemDocumentBody(SubType subType, String name) throws JSONException {
+        JSONObject document = new JSONObject();
+        document.put("$doctype", "info_item");
+        document.put("$subtype", subType.getSubType());
+        document.put("name", name);
+
+        return document;
     }
 
     /** {
@@ -152,72 +210,14 @@ public class TypeManager {
         return document;
     }
 
-    private static JSONObject buildInfoItemDocumentBody(SubType subType, String name) throws JSONException {
-        JSONObject document = new JSONObject();
-        document.put("type", "info_item");
-        document.put("subtype", subType.getSubType());
-        document.put("name", name);
-
-        return document;
-    }
-
     public static String getPublishPath(Channel channel) {
-        return APIManager.BASE_URL + Type.PUBLISH.getTypePath() + APIManager.DATABASE.LOG.getDbName() + "_" + channel.getRoomDbNameId();
+        String value = APIManager.BASE_URL + Type.PUBLISH.getTypePath() + APIManager.DATABASE.LOG.getDbName() + "_" + channel.getRoomDbNameId();
+        return value;
     }
 
     public static String getInfoItemPath(Channel channel) {
-        return APIManager.BASE_URL + Type.INFO_ITEM.getTypePath() + APIManager.DATABASE.LOG.getDbName() + "_" + channel.getRoomDbNameId();
-    }
-
-    public enum Type {
-        PUBLISH {
-            @Override
-            public String getType() {
-                return "publish";
-            }
-
-            @Override
-            public String getTypePath() {
-                return getType() + "/";
-            }
-        },
-        INFO_ITEM {
-            @Override
-            public String getType() {
-                return "info_item";
-            }
-
-            @Override
-            public String getTypePath() {
-                return getType() + "/";
-            }
-        };
-
-        abstract public String getType();
-
-        abstract public String getTypePath();
-    }
-
-    public enum SubType {
-        LOG {
-            @Override
-            public String getSubType() {
-                return "log";
-            }
-        },
-        CHAT {
-            @Override
-            public String getSubType() {
-                return "chat";
-            }
-        },
-        TRIAGE {
-            @Override
-            public String getSubType() {
-                return "triage";
-            }
-        };
-
-        abstract public String getSubType();
+        String value = APIManager.BASE_URL + Type.PUBLISH.getTypePath() + APIManager.DATABASE.APPS.getDbName() + "_" + channel.getRoomDbNameId();
+        return value;
     }
 }
+

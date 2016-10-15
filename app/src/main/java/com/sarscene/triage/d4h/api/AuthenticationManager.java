@@ -34,7 +34,7 @@ public class AuthenticationManager {
             headers = apiManager.addContentTypeHeader(headers, "application/json");
             request.setHeaders(headers);
             HUDHttpResponse response = apiManager.sendUnauthenticatedRequest(request);
-            if (200 == response.getResponseCode() && response.hasBody()) {
+            if (null != response && 200 == response.getResponseCode() && response.hasBody()) {
                 JSONObject jsonResponse = new JSONObject(response.getBodyString());
                 com.sarscene.triage.d4h.AuthenticationManager.setUser(new User(jsonResponse));
                 responseState = true;

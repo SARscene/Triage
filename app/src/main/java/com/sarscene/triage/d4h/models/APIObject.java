@@ -15,7 +15,7 @@ import java.io.Serializable;
  * "$server_rev": "2-f6f19411cfbc278eb0cf427c5883163b",
  * "idx": 1,
  * "roomDbName": "room_d4h_r8moppzm7p"
- * },
+ * }
  */
 public class APIObject implements Serializable {
     static final String TAG = APIObject.class.getName();

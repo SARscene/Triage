@@ -2,10 +2,10 @@ package com.sarscene.triage.d4h.api;
 
 import android.util.Log;
 
-import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
-import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 import com.sarscene.triage.d4h.models.Channel;
 import com.sarscene.triage.d4h.models.ChannelSettings;
+import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
+import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;

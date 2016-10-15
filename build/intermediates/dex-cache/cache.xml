@@ -3,75 +3,57 @@
 
     <item
         is-multidex="false"
-        jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
-        jumboMode="true"
+        jar="/Users/amcrober/Development/triage/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="22.0.0"
         sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-22.2.0_6521db784b512550604507ea974588ef86078f81.jar" />
+        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-22.2.0_4513bfb907686ca055b0da0447190ae9b471ae68.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/tdtm/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.0"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0_a58b33a871527d48c6be9603eb62de7e0abcbdf5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.0"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-22.2.0_29e5c7879bcf676760b192ee2add270ab5c6fe4d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.0"
-        sha1="17e592221d3f5fec0feee5a1eafc7eeb086fc6e4">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/instant-run_355b1f153cb188f05df0ad6248bac8e844c6861c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="true"
+        jar="/Users/amcrober/Development/triage/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="22.0.0"
         sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0_356a7e47f1c4c4ba478c127dd8bc1eaa485f37b8.jar" />
+        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0_dd760174d0d1ea41e9a9809df9275f0cbf5797f7.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/exploded-aar/com.reconinstruments.ui/recon-ui/4.4.0/jars/classes.jar"
-        jumboMode="true"
+        jar="/Users/amcrober/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.0"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0_514c22f0b8b4c6914cf8cb8e142919d89e115d14.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/amcrober/Development/triage/app/build/intermediates/exploded-aar/com.reconinstruments.ui/recon-ui/4.4.0/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="22.0.0"
         sha1="6f19c8c98a80971ec444616d7775d6e46ac9a7d1">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/com.reconinstruments.ui-recon-ui-4.4.0_58fe230820be0f4b9ae905966c23f9f74a2e19d5.jar" />
+        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/com.reconinstruments.ui-recon-ui-4.4.0_fe4a301ba462673c6433cf71c8ef87e527039205.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
+        jar="/Users/amcrober/Development/triage/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="22.0.0"
-        sha1="e3e93da99d1ccf59d9dba446aeecf64ba759e340">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_d45c38baeea96f7a35dc5a1106e276893ecada31.jar" />
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-22.2.0_443f2dd19244997974faf74cab352e204c31654d.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/exploded-aar/com.reconinstruments.app/recon-application/4.4.0/jars/classes.jar"
-        jumboMode="true"
+        jar="/Users/amcrober/Development/triage/app/build/intermediates/exploded-aar/com.reconinstruments.app/recon-application/4.4.0/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="22.0.0"
         sha1="993096385704d9b2dbfebbd48287c7d1b63e98de">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/com.reconinstruments.app-recon-application-4.4.0_82c93b47c378c3053148f9085b6d73e4170c723b.jar" />
+        <dex dex="/Users/amcrober/Development/triage/app/build/intermediates/pre-dexed/debug/com.reconinstruments.app-recon-application-4.4.0_d90406a54157fd4a6ee477022c4008a1250bd2c8.jar" />
     </item>
 
 </items>
