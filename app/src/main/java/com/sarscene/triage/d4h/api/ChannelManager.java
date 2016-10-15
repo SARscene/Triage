@@ -2,10 +2,10 @@ package com.sarscene.triage.d4h.api;
 
 import android.util.Log;
 
-import com.sarscene.triage.d4h.models.Channel;
-import com.sarscene.triage.d4h.models.ChannelSettings;
 import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
 import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
+import com.sarscene.triage.d4h.models.Channel;
+import com.sarscene.triage.d4h.models.ChannelSettings;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,9 +39,8 @@ public class ChannelManager {
                 // get the array
                 JSONArray jsonChannels = jsonResponse.optJSONArray("documents");
 
-
                 // iterate over the array and retrieve single person instances
-                for(int i = 0; i < jsonChannels.length(); i++){
+                for (int i = 0; i < jsonChannels.length(); i++) {
                     JSONObject jsonChannel = jsonChannels.getJSONObject(i);
 
                     Channel channel = new Channel(jsonChannel);
@@ -51,7 +50,7 @@ public class ChannelManager {
                 Log.d(TAG, "Response has no body!");
             }
         } catch (Exception e) {
-            Log.d(TAG, e.getMessage());
+            Log.d(TAG, e.toString());
             e.printStackTrace();
         }
 

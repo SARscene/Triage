@@ -8,6 +8,8 @@ Create the file `app/src/main/res/values/credentials.xml` with the following, an
 <resources>
     <string name="d4hlive_username">username</string>
     <string name="d4hlive_password">password</string>
+    <string name="d4hlive_organisation">organisation</string>
+
 </resources>
 ```
 

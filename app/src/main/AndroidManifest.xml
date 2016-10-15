@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sarscene.triage" >
+    package="com.sarscene.triage">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,20 +12,19 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="com.sarscene.triage.d4h.activities.LauncherActivity"
-            android:label="@string/app_name"
-            >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.sarscene.triage.d4h.activities.ChannelActivity">
-        </activity>
-        <activity android:name="com.sarscene.triage.d4h.activities.ChannelActionActivity">
-        </activity>
+
+        <activity android:name="com.sarscene.triage.d4h.activities.TriageActivity"></activity>
+        <activity android:name="com.sarscene.triage.d4h.activities.ChannelActivity"></activity>
+        <activity android:name="com.sarscene.triage.d4h.activities.ChannelActionActivity"></activity>
 
         <uses-library android:name="com.reconinstruments.lib" />
         <uses-library android:name="com.reconinstruments.os" />

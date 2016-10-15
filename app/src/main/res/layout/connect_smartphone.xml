@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:reconui="http://schemas.android.com/apk/res-auto"
     android:id="@+id/connect_smartphone"
     android:layout_width="match_parent"
@@ -16,25 +15,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:text="@string/app_name"
             android:textColor="@color/large_text"
             android:textSize="@dimen/large_text_size"
-            android:textStyle="bold"
-            android:text="@string/app_name"/>
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/error_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:text="@string/connect_smartphone_message"
                 android:textColor="@color/large_text"
-                android:textSize="@dimen/large_text_size"
-                android:text="@string/connect_smartphone_message"/>
+                android:textSize="@dimen/large_text_size" />
 
             <com.reconinstruments.ui.view.ButtonActionView
                 android:id="@+id/error_action"

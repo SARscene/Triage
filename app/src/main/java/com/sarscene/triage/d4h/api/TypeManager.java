@@ -2,11 +2,11 @@ package com.sarscene.triage.d4h.api;
 
 import android.util.Log;
 
+import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
+import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 import com.sarscene.triage.d4h.models.Channel;
 import com.sarscene.triage.d4h.models.File;
 import com.sarscene.triage.d4h.models.LogObject;
-import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
-import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,55 +18,6 @@ public class TypeManager {
     static final String INFO_ITEM_PATH = "info_item/";
 
     TypeManager() {
-    }
-
-    public enum Type {
-        PUBLISH {
-            @Override
-            public String getType() {
-                return "publish";
-            }
-            @Override
-            public String getTypePath() {
-                return getType() + "/";
-            }
-        },
-        INFO_ITEM {
-            @Override
-            public String getType() {
-                return "info_item";
-            }
-            @Override
-            public String getTypePath() {
-                return getType() + "/";
-            }
-        };
-
-        abstract public String getType();
-        abstract public String getTypePath();
-    }
-
-    public enum SubType {
-        LOG {
-            @Override
-            public String getSubType() {
-                return "log";
-            }
-        },
-        CHAT {
-            @Override
-            public String getSubType() {
-                return "chat";
-            }
-        },
-        TRIAGE {
-            @Override
-            public String getSubType() {
-                return "triage";
-            }
-        };
-
-        abstract public String getSubType();
     }
 
     public static LogObject chat(Channel channel, String message) throws JSONException {
@@ -142,7 +93,7 @@ public class TypeManager {
      * "subtype":"triage",
      * "action":"save",
      * "document":{
-     *  "name":"c,c,c,c",
+     * "name":"c,c,c,c",
      * }
      */
     private static byte[] buildInfoItem(SubType subType, String message) throws JSONException {
@@ -166,14 +117,15 @@ public class TypeManager {
         return document;
     }
 
-    /** {
+    /**
+     * {
      * "type": "activity_log",
      * "action": "save",
      * "document": {
-     *  "logType": "post",
-     *  "logSubtype": "chat",
-     *  "message": "Hello, world."
-     *  }
+     * "logType": "post",
+     * "logSubtype": "chat",
+     * "message": "Hello, world."
+     * }
      * }
      */
     private static byte[] buildPublishBody(SubType subType, String message, File attachment) throws JSONException {
@@ -218,6 +170,58 @@ public class TypeManager {
     public static String getInfoItemPath(Channel channel) {
         String value = APIManager.BASE_URL + Type.PUBLISH.getTypePath() + APIManager.DATABASE.APPS.getDbName() + "_" + channel.getRoomDbNameId();
         return value;
+    }
+
+    public enum Type {
+        PUBLISH {
+            @Override
+            public String getType() {
+                return "publish";
+            }
+
+            @Override
+            public String getTypePath() {
+                return getType() + "/";
+            }
+        },
+        INFO_ITEM {
+            @Override
+            public String getType() {
+                return "info_item";
+            }
+
+            @Override
+            public String getTypePath() {
+                return getType() + "/";
+            }
+        };
+
+        abstract public String getType();
+
+        abstract public String getTypePath();
+    }
+
+    public enum SubType {
+        LOG {
+            @Override
+            public String getSubType() {
+                return "log";
+            }
+        },
+        CHAT {
+            @Override
+            public String getSubType() {
+                return "chat";
+            }
+        },
+        TRIAGE {
+            @Override
+            public String getSubType() {
+                return "triage";
+            }
+        };
+
+        abstract public String getSubType();
     }
 }
 

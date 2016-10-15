@@ -10,6 +10,16 @@ import org.json.JSONObject;
 import java.io.Serializable;
 
 public class ChannelSettings extends APIObject implements Parcelable, Serializable {
+    @SuppressWarnings({"rawtypes"})
+    public static final Creator CREATOR = new Creator() {
+        public ChannelSettings createFromParcel(Parcel parcel) {
+            return new ChannelSettings(parcel);
+        }
+
+        public ChannelSettings[] newArray(int size) {
+            return new ChannelSettings[size];
+        }
+    };
     private ChannelSettingsModules modules;
 
     public ChannelSettings(JSONObject json) {
@@ -33,16 +43,16 @@ public class ChannelSettings extends APIObject implements Parcelable, Serializab
 
     /**
      * {
-     *  "_id": "room_settings~",
-     *  "_rev": "3-e0935563570ea71434ac144401a753a0",
-     *  "$doctype": "room_settings",
-     *  "name": "Oil Spill - 2016/08/11",
-     *  "modules": {
-     *   "library": true,
-     *   "h_info_manager~roles": false,
-     *   "task_tpl~test": true,
-     *   "personnel": true
-     *  }
+     * "_id": "room_settings~",
+     * "_rev": "3-e0935563570ea71434ac144401a753a0",
+     * "$doctype": "room_settings",
+     * "name": "Oil Spill - 2016/08/11",
+     * "modules": {
+     * "library": true,
+     * "h_info_manager~roles": false,
+     * "task_tpl~test": true,
+     * "personnel": true
+     * }
      * }
      *
      * @param json - server api response
@@ -73,16 +83,4 @@ public class ChannelSettings extends APIObject implements Parcelable, Serializab
             Log.e(TAG, e.getMessage());
         }
     }
-
-    @SuppressWarnings({"rawtypes"})
-    public static final Creator CREATOR = new Creator() {
-        public ChannelSettings createFromParcel(Parcel parcel) {
-            return new ChannelSettings(parcel);
-        }
-
-        public ChannelSettings[] newArray(int size)
-        {
-            return new ChannelSettings[size];
-        }
-    };
 }

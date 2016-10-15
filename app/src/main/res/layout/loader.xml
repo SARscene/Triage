@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/loader"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <ProgressBar
         android:id="@+id/progress_bar"
+        style="@style/EngageProgressBar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/EngageProgressBar"/>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_text_size"
         android:padding="16dp"
         android:text="@string/loading"
-        android:textColor="@color/recon_jet_gray"/>
+        android:textColor="@color/recon_jet_gray"
+        android:textSize="@dimen/medium_text_size" />
 
 </LinearLayout>

@@ -32,7 +32,8 @@ public class APIObject implements Serializable {
         }
     }
 
-    public APIObject(Parcel parcel) {}
+    public APIObject(Parcel parcel) {
+    }
 
     public void parse(JSONObject json) throws JSONException {
         id = json.getString("_id");

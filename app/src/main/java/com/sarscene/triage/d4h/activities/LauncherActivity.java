@@ -29,21 +29,21 @@ public class LauncherActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        if (hudConnectivityManager.isHUDConnected()){
-            if (! hudConnectivityManager.hasWebConnection()) {
+        if (hudConnectivityManager.isHUDConnected()) {
+            if (!hudConnectivityManager.hasWebConnection()) {
                 setCurrentState(FlowState.NO_WEB);
-            }else{
+            } else {
                 beginLogin();
             }
-        }else{
+        } else {
             setCurrentState(FlowState.CONNECT_SMARTPHONE);
         }
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_ENTER || keyCode == KeyEvent.KEYCODE_DPAD_CENTER){
-            if (mCurrentState == FlowState.CONNECT_SMARTPHONE){
+        if (keyCode == KeyEvent.KEYCODE_ENTER || keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
+            if (mCurrentState == FlowState.CONNECT_SMARTPHONE) {
                 startActivity(new Intent("com.reconinstruments.connectdevice.CONNECT"));
             }
         }
@@ -75,16 +75,16 @@ public class LauncherActivity extends Activity {
         findViewById(view_id).setVisibility(View.VISIBLE);
     }
 
-    private void hideViews(){
+    private void hideViews() {
         findViewById(R.id.loader).setVisibility(View.GONE);
         findViewById(R.id.no_web).setVisibility(View.GONE);
         findViewById(R.id.connect_smartphone).setVisibility(View.GONE);
     }
 
-    private void setCurrentState(FlowState state){
+    private void setCurrentState(FlowState state) {
         mCurrentState = state;
         hideViews();
-        switch (state){
+        switch (state) {
             case CONNECT_SMARTPHONE:
                 showView(R.id.connect_smartphone);
                 break;

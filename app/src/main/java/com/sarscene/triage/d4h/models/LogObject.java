@@ -6,13 +6,13 @@ import org.json.JSONObject;
 import java.io.Serializable;
 
 /**
- *  "user": {
- *   "_id": "user~0ifzohxbb!ifzohxbb4wgynag",
- *   "$doctype": "user",
- *   "name": "John Doe",
- *   "username": "jdoe",
- *   "email": "john.doe@example.com"
- *  }
+ * "user": {
+ * "_id": "user~0ifzohxbb!ifzohxbb4wgynag",
+ * "$doctype": "user",
+ * "name": "John Doe",
+ * "username": "jdoe",
+ * "email": "john.doe@example.com"
+ * }
  */
 public class LogObject extends APIObject implements Serializable {
     static final String TAG = LogObject.class.getName();

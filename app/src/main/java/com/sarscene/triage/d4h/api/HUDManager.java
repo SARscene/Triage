@@ -11,19 +11,6 @@ import com.reconinstruments.os.connectivity.IHUDConnectivity;
  */
 public class HUDManager {
     static final String TAG = HUDManager.class.getName();
-    private static HUDConnectivityManager mHUDConnectivityManager = null;
-
-    protected HUDManager() {
-
-    }
-
-    public static HUDConnectivityManager getInstance() {
-        if(mHUDConnectivityManager == null) {
-            initConnectivity();
-        }
-        return mHUDConnectivityManager;
-    }
-
     static IHUDConnectivity mConnectivityListener = new IHUDConnectivity() {
         @Override
         public void onDeviceName(String s) {
@@ -41,6 +28,18 @@ public class HUDManager {
             Log.d(TAG, "onNetworkEvent " + networkEvent.toString() + " " + bool);
         }
     };
+    private static HUDConnectivityManager mHUDConnectivityManager = null;
+
+    protected HUDManager() {
+
+    }
+
+    public static HUDConnectivityManager getInstance() {
+        if (mHUDConnectivityManager == null) {
+            initConnectivity();
+        }
+        return mHUDConnectivityManager;
+    }
 
     static void initConnectivity() {
         System.load("/system/lib/libreconinstruments_jni.so");

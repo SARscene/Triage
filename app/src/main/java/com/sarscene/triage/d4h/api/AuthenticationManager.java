@@ -2,9 +2,9 @@ package com.sarscene.triage.d4h.api;
 
 import android.util.Log;
 
-import com.sarscene.triage.d4h.models.User;
 import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
 import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
+import com.sarscene.triage.d4h.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,8 +25,8 @@ public class AuthenticationManager {
             APIManager apiManager = new APIManager();
 
             HUDHttpRequest request = new HUDHttpRequest(
-                HUDHttpRequest.RequestMethod.POST,
-                getAuthenticateURL()
+                    HUDHttpRequest.RequestMethod.POST,
+                    getAuthenticateURL()
             );
             request.setBody(buildLoginRequestBody(username, password));
 

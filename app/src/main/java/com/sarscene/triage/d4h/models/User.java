@@ -9,14 +9,14 @@ import java.io.Serializable;
 
 /**
  * {
- *  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9iJ..."
- *  "user": {
- *   "_id": "user~0ifzohxbb!ifzohxbb4wgynag",
- *   "$doctype": "user",
- *   "name": "John Doe",
- *   "username": "jdoe",
- *   "email": "john.doe@example.com"
- *  }
+ * "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9iJ..."
+ * "user": {
+ * "_id": "user~0ifzohxbb!ifzohxbb4wgynag",
+ * "$doctype": "user",
+ * "name": "John Doe",
+ * "username": "jdoe",
+ * "email": "john.doe@example.com"
+ * }
  * }
  */
 public class User implements Serializable {

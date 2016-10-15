@@ -2,7 +2,10 @@ package com.sarscene.triage.d4h.models;
 
 import android.util.Log;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 public class MultiPartUploadRequest {
     static final String TAG = MultiPartUploadRequest.class.getName();
@@ -31,7 +34,7 @@ public class MultiPartUploadRequest {
             FileInputStream fileInputStream = new FileInputStream(file);
 
             String[] filepathParts = filepath.split("/");
-            String filepathFilename = filepathParts[filepathParts.length-1];
+            String filepathFilename = filepathParts[filepathParts.length - 1];
 
             StringBuilder requestBuilder = new StringBuilder();
             requestBuilder

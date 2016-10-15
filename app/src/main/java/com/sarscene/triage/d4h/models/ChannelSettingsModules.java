@@ -10,6 +10,16 @@ import org.json.JSONObject;
 import java.io.Serializable;
 
 public class ChannelSettingsModules extends APIObject implements Parcelable, Serializable {
+    @SuppressWarnings({"rawtypes"})
+    public static final Creator CREATOR = new Creator() {
+        public ChannelSettingsModules createFromParcel(Parcel parcel) {
+            return new ChannelSettingsModules(parcel);
+        }
+
+        public ChannelSettingsModules[] newArray(int size) {
+            return new ChannelSettingsModules[size];
+        }
+    };
     private Boolean library;
     private Boolean hasInfoManagerRoles;
     private Boolean taskTemplate;
@@ -36,10 +46,10 @@ public class ChannelSettingsModules extends APIObject implements Parcelable, Ser
 
     /**
      * "modules": {
-     *   "library": true,
-     *   "h_info_manager~roles": false,
-     *   "task_tpl~test": true,
-     *   "personnel": true
+     * "library": true,
+     * "h_info_manager~roles": false,
+     * "task_tpl~test": true,
+     * "personnel": true
      * }
      *
      * @param json
@@ -101,16 +111,4 @@ public class ChannelSettingsModules extends APIObject implements Parcelable, Ser
             Log.e(TAG, e.getMessage());
         }
     }
-
-    @SuppressWarnings({"rawtypes"})
-    public static final Creator CREATOR = new Creator() {
-        public ChannelSettingsModules createFromParcel(Parcel parcel) {
-            return new ChannelSettingsModules(parcel);
-        }
-
-        public ChannelSettingsModules[] newArray(int size)
-        {
-            return new ChannelSettingsModules[size];
-        }
-    };
 }

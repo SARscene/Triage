@@ -2,10 +2,10 @@ package com.sarscene.triage.d4h.api;
 
 import android.util.Log;
 
-import com.sarscene.triage.d4h.AuthenticationManager;
 import com.reconinstruments.os.connectivity.HUDConnectivityManager;
 import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
 import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
+import com.sarscene.triage.d4h.AuthenticationManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,32 +14,8 @@ import java.util.Map;
 
 public class APIManager {
     static final String TAG = APIManager.class.getName();
-    private static HUDConnectivityManager hudManager = null;
     static final String BASE_URL = "https://d4h.live/api/";
-    static final String ORGANIZATION_NAME = "reconinstruments";
-
-    public enum DATABASE {
-        APPS {
-            @Override
-            public String getDbName() {
-                return "room_" + ORGANIZATION_NAME;
-            }
-        },
-        LOG {
-            @Override
-            public String getDbName() {
-                return "events_" + ORGANIZATION_NAME;
-            }
-        },
-        ORG {
-            @Override
-            public String getDbName() {
-                return "org_" + ORGANIZATION_NAME;
-            }
-        };
-
-        abstract public String getDbName();
-    }
+    private static HUDConnectivityManager hudManager = null;
 
     public APIManager() {
         hudManager = new HUDManager().getInstance();
@@ -50,7 +26,7 @@ public class APIManager {
         try {
             request.setHeaders(addAuthorizationHeader(request.getHeaders()));
 
-            String requestBody =  new String(request.getBody());
+            String requestBody = new String(request.getBody());
             Log.d(TAG, requestBody);
             return hudManager.sendWebRequest(request);
         } catch (Exception e) {
@@ -82,7 +58,7 @@ public class APIManager {
     }
 
     /**
-     * @param headers - the existing list of headers
+     * @param headers          - the existing list of headers
      * @param contentTypeValue - D4H API currently supports application/json and multipart/form-data
      * @return headers - modified to add the Content-Type header
      */
@@ -112,5 +88,38 @@ public class APIManager {
         }
 
         return headers;
+    }
+
+    public enum DATABASE {
+        APPS {
+            @Override
+            public String getDbName() {
+
+                return "room_" + this.organisation_name;
+            }
+
+        },
+        LOG {
+            @Override
+            public String getDbName() {
+
+                return "events_" + this.organisation_name;
+            }
+        },
+        ORG {
+            @Override
+            public String getDbName() {
+
+                return "org_" + this.organisation_name;
+            }
+        };
+
+        protected String organisation_name;
+
+        DATABASE() {
+            this.organisation_name = "usar";//Resources.getSystem().getString(d4hlive_organisation);
+        }
+
+        abstract public String getDbName();
     }
 }

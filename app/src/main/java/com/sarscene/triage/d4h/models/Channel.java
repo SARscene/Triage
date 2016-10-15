@@ -10,6 +10,16 @@ import org.json.JSONObject;
 import java.io.Serializable;
 
 public class Channel extends APIObject implements Parcelable, Serializable {
+    @SuppressWarnings({"rawtypes"})
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Channel createFromParcel(Parcel parcel) {
+            return new Channel(parcel);
+        }
+
+        public Channel[] newArray(int size) {
+            return new Channel[size];
+        }
+    };
     private String opTime;
     private String serverRev;
     private String serverPersisted;
@@ -94,7 +104,7 @@ public class Channel extends APIObject implements Parcelable, Serializable {
     public String getRoomDbNameId() {
         String[] roomDbNameParts = roomDbName.split("_");
 
-        return roomDbNameParts[roomDbNameParts.length-1];
+        return roomDbNameParts[roomDbNameParts.length - 1];
     }
 
     public ChannelSettings getChannelSettings() {
@@ -114,16 +124,4 @@ public class Channel extends APIObject implements Parcelable, Serializable {
             Log.e(TAG, e.getMessage());
         }
     }
-
-    @SuppressWarnings({"rawtypes"})
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
-        public Channel createFromParcel(Parcel parcel) {
-            return new Channel(parcel);
-        }
-
-        public Channel[] newArray(int size)
-        {
-            return new Channel[size];
-        }
-    };
 }

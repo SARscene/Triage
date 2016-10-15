@@ -2,14 +2,14 @@ package com.sarscene.triage.d4h.api;
 
 import android.util.Log;
 
+import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
+import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 import com.sarscene.triage.d4h.models.Channel;
 import com.sarscene.triage.d4h.models.File;
 import com.sarscene.triage.d4h.models.MultiPartUploadRequest;
-import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
-import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
+import com.sarscene.triage.util.SimpleMultipartEntity;
 
 import org.json.JSONObject;
-import com.sarscene.triage.util.SimpleMultipartEntity;
 
 import java.io.FileInputStream;
 
@@ -25,7 +25,7 @@ public class FileManager {
         try {
             MultiPartUploadRequest multiPartUploadRequest = new MultiPartUploadRequest(filepath);
             String[] filepathParts = filepath.split("/");
-            String filepathFilename = filepathParts[filepathParts.length-1];
+            String filepathFilename = filepathParts[filepathParts.length - 1];
             SimpleMultipartEntity entity = new SimpleMultipartEntity();
 
             APIManager apiManagerSingleton = new APIManager();

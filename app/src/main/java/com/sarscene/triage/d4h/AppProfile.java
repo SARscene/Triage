@@ -12,16 +12,15 @@ import org.json.JSONObject;
 
 public class AppProfile {
     static final String TAG = AppProfile.class.getName();
-    private static SharedPreferences prefs;
-
     private static final String PREFS_NAME = AppProfile.class.getCanonicalName();
     private static final String KEY_USER_INFO = "user_info";
+    private static SharedPreferences prefs;
 
     public AppProfile(Application instance) {
         prefs = instance.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
 
-    public void clear(){
+    public void clear() {
         prefs.edit().clear().commit();
     }
 
@@ -42,7 +41,7 @@ public class AppProfile {
 
     public void saveUser(User user) {
         SharedPreferences.Editor editor = prefs.edit();
-        if (AuthenticationManager.isLoggedIn() && user!=null){
+        if (AuthenticationManager.isLoggedIn() && user != null) {
             try {
                 editor.putString(KEY_USER_INFO, user.getJSONObject().toString());
             } catch (Exception e) {
