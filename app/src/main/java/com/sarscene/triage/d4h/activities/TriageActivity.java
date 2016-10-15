@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.reconinstruments.os.connectivity.HUDConnectivityManager;
-import com.reconinstruments.ui.R;
 import com.reconinstruments.ui.carousel.CarouselActivity;
 import com.reconinstruments.ui.carousel.CarouselItem;
 import com.reconinstruments.ui.carousel.CarouselViewPager;
@@ -29,7 +28,9 @@ public class TriageActivity extends CarouselActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(com.reconinstruments.ui.R.layout.carousel_host);
+        getCarousel().setPageMargin(30);
+        getCarousel().setVisibility(View.VISIBLE);
         Bundle extras = getIntent().getExtras();
         Intent intentIncoming = getIntent();
         if (extras != null) {
@@ -39,7 +40,6 @@ public class TriageActivity extends CarouselActivity {
         hudConnectivityManager = HUDManager.getInstance();
         Toast.makeText(this.getApplicationContext(), "Triage mode", Toast.LENGTH_SHORT).show();
         this.requestLocation();
-        setContentView(R.layout.carousel_host);
         this.promptStatus();
     }
 
@@ -69,14 +69,13 @@ public class TriageActivity extends CarouselActivity {
 
     private void promptStatus() {
         Log.e(TAG, "Prompting victim status...");
-        //Todo: replace with carousel or whatever is bigger
-        /*CarouselViewPager title = (CarouselViewPager)findViewById(R.id.title);
-        title.set*/
+        /*TextView title = (TextView)findViewById(R.layout.id);
+        title.setText("ALL TIME BEST");*/
         getCarousel().setContents(
-                new ListItem(CasualtyStatus.MINOR.name(), CasualtyStatus.MINOR),
-                new ListItem(CasualtyStatus.DELAYED.name(), CasualtyStatus.DELAYED),
-                new ListItem(CasualtyStatus.IMMEDIATE.name(), CasualtyStatus.IMMEDIATE),
-                new ListItem(CasualtyStatus.DECEASED.name(), CasualtyStatus.DECEASED)
+                new ListItem(CasualtyStatus.MINOR),
+                new ListItem(CasualtyStatus.DELAYED),
+                new ListItem(CasualtyStatus.IMMEDIATE),
+                new ListItem(CasualtyStatus.DECEASED)
         );
     }
 
@@ -97,7 +96,7 @@ public class TriageActivity extends CarouselActivity {
         CarouselViewPager carouselViewPager;
         TextView label;
 
-        ListItem(String text, CasualtyStatus status) {
+        ListItem(CasualtyStatus status) {
             super();
             this.status = status;
             this.carouselViewPager = getCarousel();
@@ -110,7 +109,7 @@ public class TriageActivity extends CarouselActivity {
         }
 
         public int getLayoutId() {
-            return R.layout.carousel_item_title;
+            return com.sarscene.triage.R.layout.carousel_item;
         }
 
         @Override
@@ -121,14 +120,19 @@ public class TriageActivity extends CarouselActivity {
             this.label.setText(this.status.name());
             this.label.setBackgroundColor(this.status.getCardColor());
             this.label.setTextColor(this.status.getTextColor());
+            this.label.setVisibility(View.VISIBLE);
+            view.setVisibility(View.VISIBLE);
         }
 
         @Override
         public void updateViewForPosition(View view, POSITION position) {
-            if (position == POSITION.CENTER)
+            if (position == POSITION.CENTER) {
+                view.setVisibility(View.VISIBLE);
                 label.setVisibility(View.VISIBLE);
-            else
+            } else {
+                view.setVisibility(View.GONE);
                 label.setVisibility(View.GONE);
+            }
         }
     }
 }
