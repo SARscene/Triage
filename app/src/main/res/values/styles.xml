@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/ReconTheme.Fullscreen">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="EngageProgressBar" parent="android:Widget.ProgressBar.Large">
+        <item name="android:indeterminateDrawable">@drawable/rotate_progress_bar</item>
+        <item name="android:indeterminate">true</item>
+    </style>
+
+</resources>
+
