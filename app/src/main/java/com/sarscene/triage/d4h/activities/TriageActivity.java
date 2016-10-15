@@ -22,6 +22,7 @@ public class TriageActivity extends CarouselActivity {
 
     static final String TAG = TriageActivity.class.getName();
     public static Channel channel;
+    public static Intent triageManager;
     public String photoPath;
     HUDConnectivityManager hudConnectivityManager;
     private boolean mAlreadyStarted;
@@ -32,7 +33,7 @@ public class TriageActivity extends CarouselActivity {
         //TODO: TypeManager.log(channel, "This is a log");
         //todo return status to parent so parent can save and restart at capture screen
         Toast.makeText(context, "Sending status \"" + item.toString() + "\" to ICS...", Toast.LENGTH_SHORT).show();
-        Toast.makeText(context, "Success.", Toast.LENGTH_SHORT).show();
+        context.startActivity(triageManager);
     }
 
     @Override
@@ -48,38 +49,27 @@ public class TriageActivity extends CarouselActivity {
     }
 
     public void fetchChannel() {
-        Bundle extras = getIntent().getExtras();
         Intent intentIncoming = getIntent();
+        Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            channel = intentIncoming.getParcelableExtra("channel");
+            triageManager.putExtra("channel", intentIncoming.getParcelableExtra("channel"));
         }
     }
 
     private void fetchPhotoPath() {
-
         Bundle extras = getIntent().getExtras();
         Intent intentIncoming = getIntent();
         if (extras != null) {
             this.data = intentIncoming.getParcelableExtra("data");
         }
-
-        /*
-        Bundle extras = getIntent().getExtras();
-        Intent intentIncoming = getIntent();
-        if (extras != null) {
-            //TODO: return actual file path
-            // return intentIncoming.getParcelableExtra(PhotoFileObserver.PHOTO_USER_FULL_PATH);
-            return "/sdcard/dcim/camera/2016-10-15 02:58 IMG_20161015_085829.jpg";
-        } else {
-            return null;
-        }
-        */
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fetchPhotoPath();
+        triageManager = new Intent(getApplicationContext(), TriageManager.class);
+        triageManager.putExtra("path", data.getPath());
         fetchChannel();
         promptStatus();
     }
@@ -129,7 +119,6 @@ public class TriageActivity extends CarouselActivity {
             this.valueText.setText(this.status.name());
             view.setBackgroundColor(this.status.getCardColor());
             this.valueText.setTextColor(this.status.getTextColor());
-            this.valueText.setVisibility(View.VISIBLE);
         }
 
         @Override

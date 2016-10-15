@@ -31,6 +31,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.sarscene.triage.d4h.activities.TriageManager"></activity>
         <activity android:name="com.sarscene.triage.d4h.activities.ChannelActivity"></activity>
         <activity android:name="com.sarscene.triage.d4h.activities.ChannelActionActivity">
             <intent-filter>

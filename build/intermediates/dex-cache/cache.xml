@@ -3,24 +3,6 @@
 
     <item
         is-multidex="false"
-        jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.0"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-22.2.0_6521db784b512550604507ea974588ef86078f81.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/tdtm/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.0"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0_a58b33a871527d48c6be9603eb62de7e0abcbdf5.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -36,6 +18,15 @@
         revision="22.0.0"
         sha1="13302f030a9af1b082a47773fb9bf367b60202e6">
         <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/instant-run_355b1f153cb188f05df0ad6248bac8e844c6861c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.0"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-22.2.0_6521db784b512550604507ea974588ef86078f81.jar" />
     </item>
     <item
         is-multidex="false"
@@ -61,8 +52,17 @@
         jumboMode="true"
         optimize="true"
         revision="22.0.0"
-        sha1="55c03930801297572dc91d2aec863a29c9f7e292">
+        sha1="db216a76a8cd49be472bc31e44cc4959e6e9f018">
         <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_d45c38baeea96f7a35dc5a1106e276893ecada31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/tdtm/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="22.0.0"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0_a58b33a871527d48c6be9603eb62de7e0abcbdf5.jar" />
     </item>
     <item
         is-multidex="false"
