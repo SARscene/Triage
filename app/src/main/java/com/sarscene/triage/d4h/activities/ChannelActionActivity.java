@@ -2,6 +2,9 @@ package com.sarscene.triage.d4h.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,8 +21,13 @@ import com.sarscene.triage.d4h.models.User;
 
 import org.json.JSONException;
 
-public class ChannelActionActivity extends SimpleListActivity {
+public class ChannelActionActivity extends SimpleListActivity implements LocationListener {
     static final String TAG = ChannelActionActivity.class.getName();
+    private LocationManager mLocationManager;
+    private Location location;
+
+    private static final int MINIMUM_TIME_BETWEEN_UPDATES = 300000; // 5 minutes in millis
+    private static final int MINIMUM_DISTANCE_BETWEEN_UPDATES = 100; //meters
 
     public Channel channel;
 
@@ -44,13 +52,16 @@ public class ChannelActionActivity extends SimpleListActivity {
         }
         Log.e(TAG, "...user exists " + u.getUserData().getUsername());
 
+        this.mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         getChannel();
         populateListView();
+        registerForUpdates();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unregisterForUpdates();
     }
 
     private void getChannel() {
@@ -63,9 +74,10 @@ public class ChannelActionActivity extends SimpleListActivity {
 
     private void populateListView() {
         setContents(
-                new ListItem("Triage something", SubType.TRIAGE),
-                new ListItem("Chat something", SubType.CHAT),
-                new ListItem("Log something", SubType.LOG)
+                new ListItem("Triage", SubType.TRIAGE),
+                new ListItem("Assessment", SubType.ASSESSMENT),
+                new ListItem("Chat", SubType.CHAT),
+                new ListItem("Log", SubType.LOG)
         );
     }
 
@@ -105,7 +117,8 @@ public class ChannelActionActivity extends SimpleListActivity {
                         text = "This is a log";
                         break;
                     case TRIAGE:
-                        launchCamera();
+//                        launchCamera();
+                        TypeManager.triage(channel, 1, location);
                         break;
                 }
             } catch (JSONException e) {
@@ -117,4 +130,37 @@ public class ChannelActionActivity extends SimpleListActivity {
             toast.show();
         }
     }
+
+    public void registerForUpdates() {
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MINIMUM_TIME_BETWEEN_UPDATES, MINIMUM_DISTANCE_BETWEEN_UPDATES, this);
+    }
+
+    public void unregisterForUpdates() {
+        mLocationManager.removeUpdates(ChannelActionActivity.this);
+    }
+
+    @Override
+    public void onLocationChanged(Location loc) {
+        Log.v(TAG, "Got a location update!");
+        Log.v(TAG, "latitude: " + loc.getLatitude());
+        Log.v(TAG, "longitude: " + loc.getLongitude());
+        Log.v(TAG, "timestamp: " + System.currentTimeMillis() / 1000);
+        this.location = loc;
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+    }
+
+//    private void updatePosition(Location location) {
+//        Log.d(TAG, "Latitude: " + location.getLatitude() + " Longitude: " + location.getLongitude());
+//    }
 }

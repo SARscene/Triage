@@ -1,5 +1,10 @@
 package com.sarscene.triage.d4h.api;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
@@ -11,6 +16,9 @@ import com.sarscene.triage.d4h.models.LogObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TypeManager {
     static final String TAG = TypeManager.class.getName();
@@ -32,8 +40,8 @@ public class TypeManager {
         return publish(channel, buildPublishBody(SubType.LOG, message, file));
     }
 
-    public static LogObject triage(Channel channel, String message) throws JSONException {
-        return publishInfoItem(channel, buildInfoItem(SubType.TRIAGE, message));
+    public static LogObject triage(Channel channel, int status, Location location) throws JSONException {
+        return publishInfoItem(channel, buildInfoItem(SubType.TRIAGE, status, location));
     }
 
     private static LogObject publish(Channel channel, byte[] requestBody) {
@@ -96,8 +104,16 @@ public class TypeManager {
      * "name":"c,c,c,c",
      * }
      */
-    private static byte[] buildInfoItem(SubType subType, String message) throws JSONException {
-        JSONObject document = buildInfoItemDocumentBody(subType, message);
+    private static byte[] buildInfoItem(SubType subType, int status, Location location) throws JSONException {
+        JSONObject loc = new JSONObject();
+        if (location == null) {
+            loc.put("lat", 53.4815620);
+            loc.put("lng", -113.4936240);
+        } else {
+            loc.put("lat", location.getLatitude());
+            loc.put("lng", location.getLongitude());
+        }
+        JSONObject document = buildInfoItemDocumentBody(subType, status, loc);
 
         JSONObject requestBody = new JSONObject();
         requestBody.put("type", "info_item");
@@ -108,11 +124,15 @@ public class TypeManager {
         return requestBody.toString().getBytes();
     }
 
-    private static JSONObject buildInfoItemDocumentBody(SubType subType, String name) throws JSONException {
+    private static JSONObject buildInfoItemDocumentBody(SubType subType, int status, JSONObject location) throws JSONException {
         JSONObject document = new JSONObject();
         document.put("$doctype", "info_item");
         document.put("$subtype", subType.getSubType());
-        document.put("name", name);
+        JSONObject data = new JSONObject();
+        data.put("status", status);
+        data.put("location", location);
+        document.put("data", data);
+        document.put("name", new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()));
 
         return document;
     }
@@ -218,6 +238,12 @@ public class TypeManager {
             @Override
             public String getSubType() {
                 return "triage";
+            }
+        },
+        ASSESSMENT {
+            @Override
+            public String getSubType() {
+                return "assessment";
             }
         };
 
