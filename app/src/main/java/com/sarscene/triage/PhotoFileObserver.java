@@ -35,7 +35,7 @@ public class PhotoFileObserver extends FileObserver {
     }
 
     public void onEvent(int event, String path) {
-        Log.i(TAG, "File changed: " + path);
+        Log.i(TAG, "FileObject changed: " + path);
         Intent intent = new Intent(context, TriageActivity.class);
         intent.putExtra(PHOTO_USER_FULL_PATH, path);
         context.startActivity(intent);

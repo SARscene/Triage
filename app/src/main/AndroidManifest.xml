@@ -2,11 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sarscene.triage">
 
+    <uses-sdk android:minSdkVersion="16"/>
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -22,9 +30,23 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.sarscene.triage.d4h.activities.TriageActivity"></activity>
-        <activity android:name="com.sarscene.triage.d4h.activities.ChannelActivity"></activity>
-        <activity android:name="com.sarscene.triage.d4h.activities.ChannelActionActivity"></activity>
+        <activity android:name="com.sarscene.triage.d4h.activities.ChannelActivity">
+        </activity>
+        <activity android:name="com.sarscene.triage.d4h.activities.ChannelActionActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.sarscene.triage.d4h.activities.CameraActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.sarscene.triage.d4h.activities.TriageActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
         <uses-library android:name="com.reconinstruments.lib" />
         <uses-library android:name="com.reconinstruments.os" />

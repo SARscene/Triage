@@ -5,7 +5,7 @@ import android.util.Log;
 import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
 import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 import com.sarscene.triage.d4h.models.Channel;
-import com.sarscene.triage.d4h.models.File;
+import com.sarscene.triage.d4h.models.FileObject;
 import com.sarscene.triage.d4h.models.LogObject;
 
 import org.json.JSONArray;
@@ -28,7 +28,7 @@ public class TypeManager {
         return publish(channel, buildPublishBody(SubType.LOG, message, null));
     }
 
-    public static LogObject logWithAttachment(Channel channel, String message, File file) throws JSONException {
+    public static LogObject logWithAttachment(Channel channel, String message, FileObject file) throws JSONException {
         return publish(channel, buildPublishBody(SubType.LOG, message, file));
     }
 
@@ -128,7 +128,7 @@ public class TypeManager {
      * }
      * }
      */
-    private static byte[] buildPublishBody(SubType subType, String message, File attachment) throws JSONException {
+    private static byte[] buildPublishBody(SubType subType, String message, FileObject attachment) throws JSONException {
         JSONObject document = buildPublishDocumentBody(subType, message, attachment);
 
         JSONObject requestBody = new JSONObject();
@@ -139,7 +139,7 @@ public class TypeManager {
         return requestBody.toString().getBytes();
     }
 
-    private static JSONObject buildPublishDocumentBody(SubType subType, String message, File attachment) throws JSONException {
+    private static JSONObject buildPublishDocumentBody(SubType subType, String message, FileObject attachment) throws JSONException {
         JSONObject document = new JSONObject();
         document.put("logType", "post");
         document.put("logSubtype", subType.getSubType());

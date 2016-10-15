@@ -5,7 +5,7 @@ import android.util.Log;
 import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
 import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 import com.sarscene.triage.d4h.models.Channel;
-import com.sarscene.triage.d4h.models.File;
+import com.sarscene.triage.d4h.models.FileObject;
 import com.sarscene.triage.d4h.models.MultiPartUploadRequest;
 import com.sarscene.triage.util.SimpleMultipartEntity;
 
@@ -20,8 +20,8 @@ public class FileManager {
     FileManager() {
     }
 
-    public static File upload(Channel channel, String filepath) {
-        File d4hfile = null;
+    public static FileObject upload(Channel channel, String filepath) {
+        FileObject d4hfile = null;
         try {
             MultiPartUploadRequest multiPartUploadRequest = new MultiPartUploadRequest(filepath);
             String[] filepathParts = filepath.split("/");
@@ -49,7 +49,7 @@ public class FileManager {
             HUDHttpResponse response = apiManagerSingleton.sendAuthenticatedRequest(request);
             if (response.hasBody()) {
                 JSONObject jsonResponse = new JSONObject(response.getBodyString());
-                d4hfile = new File(jsonResponse);
+                d4hfile = new FileObject(jsonResponse);
             } else {
                 Log.d(TAG, "Response has no body!");
             }

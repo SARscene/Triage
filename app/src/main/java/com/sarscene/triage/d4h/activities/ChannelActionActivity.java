@@ -2,17 +2,16 @@ package com.sarscene.triage.d4h.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.reconinstruments.os.connectivity.HUDConnectivityManager;
 import com.reconinstruments.ui.list.SimpleListActivity;
 import com.reconinstruments.ui.list.StandardListItem;
 import com.sarscene.triage.PhotoFileObserver;
 import com.sarscene.triage.R;
 import com.sarscene.triage.d4h.AuthenticationManager;
-import com.sarscene.triage.d4h.api.HUDManager;
 import com.sarscene.triage.d4h.api.TypeManager;
 import com.sarscene.triage.d4h.api.TypeManager.SubType;
 import com.sarscene.triage.d4h.models.Channel;
@@ -22,16 +21,47 @@ import org.json.JSONException;
 
 public class ChannelActionActivity extends SimpleListActivity {
     static final String TAG = ChannelActionActivity.class.getName();
+
     public Channel channel;
-    private HUDConnectivityManager hudConnectivityManager;
-    private boolean mAlreadyStarted;
-    private PhotoFileObserver mPhotoFileObserver;
+
+    public class ListItem extends StandardListItem {
+        SubType subType;
+
+        public ListItem(String text, SubType subType) {
+            super(text);
+            this.subType = subType;
+        }
+
+        public void onClick(Context context) {
+            CharSequence text = "";
+            try {
+                switch (subType) {
+                    case CHAT:
+                        TypeManager.chat(channel, "This is a chat");
+                        text = "This is a chat";
+                        break;
+                    case LOG:
+                        TypeManager.log(channel, "This is a log");
+                        text = "This is a log";
+                        break;
+                    case TRIAGE:
+                        launchCamera();
+                        break;
+                }
+            } catch (JSONException e) {
+                Log.e(TAG, e.getMessage());
+            }
+//            context.startActivity(new Intent(context, activityClass));
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+    }
 
     @Override
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        hudConnectivityManager = HUDManager.getInstance();
         setContentView(R.layout.list_standard_layout);
     }
 
@@ -50,30 +80,12 @@ public class ChannelActionActivity extends SimpleListActivity {
         Log.e(TAG, "...user exists " + u.getUserData().getUsername());
 
         getChannel();
-        initPhotoObserver();
         populateListView();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        destroyPhotoObserver();
-    }
-
-    private void initPhotoObserver() {
-        if (!mAlreadyStarted) {
-            mPhotoFileObserver = new PhotoFileObserver(this, channel);
-            mPhotoFileObserver.startWatching();
-            mAlreadyStarted = true;
-        }
-    }
-
-    private void destroyPhotoObserver() {
-        if (mAlreadyStarted) {
-            mPhotoFileObserver.stopWatching();
-            mPhotoFileObserver = null;
-            mAlreadyStarted = false;
-        }
     }
 
     private void getChannel() {
@@ -86,15 +98,25 @@ public class ChannelActionActivity extends SimpleListActivity {
 
     private void populateListView() {
         setContents(
-                new ListItem("Chat something", SubType.CHAT),
-                new ListItem("Log something", SubType.LOG),
-                new ListItem("Triage something", SubType.TRIAGE)
+            new ListItem("Triage something", SubType.TRIAGE),
+            new ListItem("Chat something", SubType.CHAT),
+            new ListItem("Log something", SubType.LOG)
         );
     }
 
-    public void promptPhoto() {
-        Intent intent = new Intent("com.reconinstruments.camera");
-        startActivity(intent);
+    public void launchCamera() {
+        Intent intent = new Intent(ChannelActionActivity.this, CameraActivity.class);
+        startActivityForResult(intent, 2);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2) {
+            Intent intent = new Intent(ChannelActionActivity.this, TriageActivity.class);
+            intent.putExtra("data", (Uri) data.getExtras().get("data"));
+            startActivity(intent);
+        }
     }
 
     public class ListItem extends StandardListItem {

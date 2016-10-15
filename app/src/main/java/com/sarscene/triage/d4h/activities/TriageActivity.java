@@ -2,6 +2,8 @@ package com.sarscene.triage.d4h.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.location.Criteria;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -25,13 +27,18 @@ public class TriageActivity extends CarouselActivity {
     static final String TAG = TriageActivity.class.getName();
     HUDConnectivityManager hudConnectivityManager;
     private boolean mAlreadyStarted;
-    private PhotoFileObserver mPhotoFileObserver;
-    private Casualty casualty;
+    private Uri data;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String photoPath = this.getPhotoPath();
+
+        Bundle extras = getIntent().getExtras();
+        Intent intentIncoming = getIntent();
+        if (extras != null) {
+            this.data = intentIncoming.getParcelableExtra("data");
+        }
+
         hudConnectivityManager = HUDManager.getInstance();
         Toast.makeText(this.getApplicationContext(), "Triage mode", Toast.LENGTH_SHORT).show();
         this.requestLocation();
