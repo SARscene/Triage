@@ -4,9 +4,6 @@ import android.util.Log;
 
 import java.io.*;
 
-/**
- * Created by amcrober on 2016-06-13.
- */
 public class MultiPartUploadRequest {
     static final String TAG = MultiPartUploadRequest.class.getName();
     String twoHyphens = "--";

@@ -42,6 +42,7 @@ public class AuthenticationManager {
                 Log.e(TAG, "Response has no body!");
             }
         } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
             e.printStackTrace();
         }
 

@@ -7,22 +7,23 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.sarscene.triage.PhotoFileObserver;
+import com.reconinstruments.os.connectivity.HUDConnectivityManager;
+import com.reconinstruments.ui.list.SimpleListActivity;
+import com.reconinstruments.ui.list.StandardListItem;
 import com.sarscene.triage.d4h.AuthenticationManager;
 import com.sarscene.triage.d4h.api.HUDManager;
 import com.sarscene.triage.d4h.api.TypeManager;
 import com.sarscene.triage.d4h.api.TypeManager.SubType;
 import com.sarscene.triage.d4h.models.Channel;
 import com.sarscene.triage.d4h.models.User;
-import com.reconinstruments.os.connectivity.HUDConnectivityManager;
-import com.reconinstruments.ui.list.SimpleListActivity;
-import com.reconinstruments.ui.list.StandardListItem;
+import com.sarscene.triage.R;
 
 import org.json.JSONException;
 
 public class ChannelActionActivity extends SimpleListActivity {
-
     static final String TAG = ChannelActionActivity.class.getName();
-    HUDConnectivityManager hudConnectivityManager;
+
+    private HUDConnectivityManager hudConnectivityManager;
     public Channel channel;
     private boolean mAlreadyStarted;
     private PhotoFileObserver mPhotoFileObserver;
@@ -30,7 +31,7 @@ public class ChannelActionActivity extends SimpleListActivity {
     public class ListItem extends StandardListItem {
         SubType subType;
 
-        public ListItem(String text, SubType subType){
+        public ListItem(String text, SubType subType) {
             super(text);
             this.subType = subType;
         }
@@ -48,14 +49,14 @@ public class ChannelActionActivity extends SimpleListActivity {
                         text = "This is a log";
                         break;
                     case TRIAGE:
-                        TypeManager.triage(channel, "This is a triage. FROM JET!");
-                        text = "This is a triage";
-                        break;
+                        initPhotoObserver();
+                        promptPhoto();
+                        //See PhotoFileObserver.onEvent() for the rest
                 }
             } catch (JSONException e) {
                 Log.e(TAG, e.getMessage());
             }
-//            context.startActivity(new Intent(context, ChannelActionActivity.class));
+//            context.startActivity(new Intent(context, activityClass));
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
@@ -63,10 +64,11 @@ public class ChannelActionActivity extends SimpleListActivity {
     }
 
     @Override
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         hudConnectivityManager = HUDManager.getInstance();
-        setContentView(com.sarscene.triage.R.layout.list_standard_layout);
+        setContentView(R.layout.list_standard_layout);
 //        getChannel();
 //        initPhotoObserver();
     }
@@ -122,9 +124,14 @@ public class ChannelActionActivity extends SimpleListActivity {
 
     private void populateListView() {
         setContents(
-            new ListItem("Chat something", SubType.CHAT),
-            new ListItem("Log something", SubType.LOG),
-            new ListItem("Triage something", SubType.TRIAGE)
+                new ListItem("Chat something", SubType.CHAT),
+                new ListItem("Log something", SubType.LOG),
+                new ListItem("Triage something", SubType.TRIAGE)
         );
+    }
+
+    public void promptPhoto() {
+        Intent intent = new Intent("com.reconinstruments.camera");
+        startActivity(intent);
     }
 }

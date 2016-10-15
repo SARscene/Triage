@@ -27,7 +27,6 @@
         <activity android:name="com.sarscene.triage.d4h.activities.ChannelActionActivity">
         </activity>
 
-
         <uses-library android:name="com.reconinstruments.lib" />
         <uses-library android:name="com.reconinstruments.os" />
     </application>

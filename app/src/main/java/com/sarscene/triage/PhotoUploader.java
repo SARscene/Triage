@@ -16,6 +16,17 @@ public class PhotoUploader {
     Context mContext;
     Channel mChannel;
 
+    PhotoUploader(Context context, Channel channel) {
+        this.mContext = null;
+        this.mContext = context;
+        this.mChannel = channel;
+    }
+
+    void photoFolderEvent(String filepath) {
+        Log.d(TAG, "File changed: " + filepath);
+        new UploadFileTask(mChannel, filepath).execute();
+    }
+
     class UploadFileTask extends AsyncTask<String, Void, Boolean> {
         public UploadFileTask(Channel channel, String filepath) {
             File file = FileManager.upload(channel, filepath);
@@ -45,16 +56,5 @@ public class PhotoUploader {
                 Log.e(PhotoUploader.TAG, "BOOOOOOOO");
             }
         }
-    }
-
-    PhotoUploader(Context context, Channel channel) {
-        this.mContext = null;
-        this.mContext = context;
-        this.mChannel = channel;
-    }
-
-    void photoFolderEvent(String filepath) {
-        Log.d(TAG, "File changed: " + filepath);
-        new UploadFileTask(mChannel, filepath).execute();
     }
 }

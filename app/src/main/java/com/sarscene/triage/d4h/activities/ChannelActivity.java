@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.sarscene.triage.R;
 import com.sarscene.triage.d4h.AuthenticationManager;
 import com.sarscene.triage.d4h.api.ChannelManager;
 import com.sarscene.triage.d4h.api.HUDManager;
@@ -43,11 +44,11 @@ public class ChannelActivity extends SimpleListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         hudConnectivityManager = HUDManager.getInstance();
-        setContentView(com.sarscene.triage.R.layout.list_standard_layout);
+        setContentView(R.layout.list_standard_layout);
 
         ArrayList<Channel> channels = ChannelManager.listChannels();
         ArrayList<SimpleListItem> listItems;
-        listItems = new ArrayList<>();
+        listItems = new ArrayList<SimpleListItem>();
         ChannelListItem addItem;
 
         for (Channel channel : channels) {

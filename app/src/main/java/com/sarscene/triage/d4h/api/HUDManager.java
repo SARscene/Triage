@@ -8,7 +8,6 @@ import com.reconinstruments.os.connectivity.IHUDConnectivity;
 
 /**
  * Controls access to the HUD Connectivity Manager
- * Created by amcrober on 2016-04-07.
  */
 public class HUDManager {
     static final String TAG = HUDManager.class.getName();
@@ -17,6 +16,7 @@ public class HUDManager {
     protected HUDManager() {
 
     }
+
     public static HUDConnectivityManager getInstance() {
         if(mHUDConnectivityManager == null) {
             initConnectivity();

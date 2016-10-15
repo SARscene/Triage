@@ -7,9 +7,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 
-/**
- * Created by amcrober on 2016-05-06.
- */
 public class LocationUpdater {
     static final String TAG = LocationHandler.class.getName();
 

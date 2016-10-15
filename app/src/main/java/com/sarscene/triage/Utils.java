@@ -1,5 +1,6 @@
 package com.sarscene.triage;
 
+import android.support.v4.BuildConfig;
 import android.util.Base64;
 import android.util.Log;
 

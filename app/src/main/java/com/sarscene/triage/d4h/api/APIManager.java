@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.sarscene.triage.d4h.AuthenticationManager;
 import com.reconinstruments.os.connectivity.HUDConnectivityManager;
-import com.reconinstruments.os.connectivity.IHUDConnectivity;
 import com.reconinstruments.os.connectivity.http.HUDHttpRequest;
 import com.reconinstruments.os.connectivity.http.HUDHttpResponse;
 
@@ -16,7 +15,7 @@ import java.util.Map;
 public class APIManager {
     static final String TAG = APIManager.class.getName();
     private static HUDConnectivityManager hudManager = null;
-    static final String BASE_URL = "https://www.d4h.live/api/";
+    static final String BASE_URL = "https://d4h.live/api/";
     static final String ORGANIZATION_NAME = "reconinstruments";
 
     public enum DATABASE {
@@ -61,18 +60,11 @@ public class APIManager {
     }
 
     public HUDHttpResponse sendUnauthenticatedRequest(HUDHttpRequest request) {
-        HUDHttpResponse response = null;
         try {
-            boolean local = hudManager.isHUDConnected();
-            boolean local_again = hudManager.hasRemoteWeb();
-            IHUDConnectivity.ConnectionState local_again_again = hudManager.getConnectionState();
-            boolean hasWeb = hudManager.hasWebConnection();
-
-            response = hudManager.sendWebRequest(request);
+            return hudManager.sendWebRequest(request);
         } catch (Exception e) {
-            Log.d(TAG, "THINGS!");
+            return null;
         }
-        return response;
     }
 
     /**
@@ -82,7 +74,7 @@ public class APIManager {
     private Map<String, List<String>> addAuthorizationHeader(Map<String, List<String>> headers) {
         headers = initHeaders(headers);
 
-        List<String> authKeyValue = new ArrayList<>();
+        List<String> authKeyValue = new ArrayList<String>();
         authKeyValue.add("Bearer " + AuthenticationManager.getUser().getToken());
         headers.put("Authorization", authKeyValue);
 
@@ -97,7 +89,7 @@ public class APIManager {
     public Map<String, List<String>> addContentTypeHeader(Map<String, List<String>> headers, String contentTypeValue) {
         headers = initHeaders(headers);
 
-        List<String> keyValue = new ArrayList<>();
+        List<String> keyValue = new ArrayList<String>();
         keyValue.add(contentTypeValue);
         headers.put("Content-Type", keyValue);
 
@@ -107,7 +99,7 @@ public class APIManager {
     public Map<String, List<String>> addHeader(Map<String, List<String>> headers, String key, String value) {
         headers = initHeaders(headers);
 
-        List<String> keyValue = new ArrayList<>();
+        List<String> keyValue = new ArrayList<String>();
         keyValue.add(value);
         headers.put(key, keyValue);
 

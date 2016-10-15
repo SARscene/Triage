@@ -21,7 +21,7 @@ public class ChannelManager {
     }
 
     public static ArrayList<Channel> listChannels() {
-        ArrayList<Channel> channels = new ArrayList<>();
+        ArrayList<Channel> channels = new ArrayList<Channel>();
         try {
             APIManager apiManagerSingleton = new APIManager();
 
