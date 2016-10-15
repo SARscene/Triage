@@ -10,7 +10,7 @@ import android.util.Log;
 public class LocationUpdater {
     static final String TAG = LocationHandler.class.getName();
 
-    public class LocationHandler implements LocationListener {
+    private class LocationHandler implements LocationListener {
 
         private final String TAG = LocationHandler.class.getSimpleName();
         private Context mContext;

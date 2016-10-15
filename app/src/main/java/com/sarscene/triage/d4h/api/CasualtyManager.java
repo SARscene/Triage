@@ -6,26 +6,11 @@ import java.util.ArrayList;
 
 public class CasualtyManager {
     static final String TAG = CasualtyManager.class.getName();
+    private final CasualtyManager casualtyManager;
     private ArrayList<Casualty> casualties = new ArrayList<Casualty>();
 
-    CasualtyManager() {
+    public CasualtyManager() {
+        this.casualtyManager = new CasualtyManager();
     }
-
-    boolean promptPicture() {
-        boolean success = false;
-        //TODO
-        return success;
-    }
-
-    String onPictureTaken(String filepath) {
-        //TODO
-        return filepath;
-    }
-
-    boolean requestCurrentLocation() {
-
-        return true;
-    }
-
 
 }

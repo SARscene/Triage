@@ -1,21 +1,22 @@
 package com.sarscene.triage.d4h.models;
 
+import android.location.Location;
+
 import java.io.Serializable;
 
 public class Casualty implements Serializable {
     static final String TAG = Casualty.class.getName();
-
     String picturePath;
-    Double lat, lon;
+    CasualtyStatus status;
+    Location location;
 
 
-    Casualty(String picturePath, Double lat, Double lon) {
-        this.picturePath = picturePath;
-        this.lat = lat;
-        this.lon = lon;
+    public void setStatus(CasualtyStatus status) {
+        this.status = status;
     }
 
-    boolean setStatus(CasualtyStatus newStatus) {
-        return true;
+
+    public Casualty(String picturePath) {
+        this.picturePath = picturePath;
     }
 }

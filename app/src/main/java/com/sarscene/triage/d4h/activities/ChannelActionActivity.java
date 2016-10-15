@@ -33,8 +33,6 @@ public class ChannelActionActivity extends SimpleListActivity {
         super.onCreate(savedInstanceState);
         hudConnectivityManager = HUDManager.getInstance();
         setContentView(R.layout.list_standard_layout);
-//        getChannel();
-//        initPhotoObserver();
     }
 
     @Override
@@ -89,7 +87,8 @@ public class ChannelActionActivity extends SimpleListActivity {
     private void populateListView() {
         setContents(
                 new ListItem("Chat something", SubType.CHAT),
-                new ListItem("Log something", SubType.LOG)
+                new ListItem("Log something", SubType.LOG),
+                new ListItem("Triage", SubType.TRIAGE)
         );
     }
 
@@ -101,7 +100,7 @@ public class ChannelActionActivity extends SimpleListActivity {
     public class ListItem extends StandardListItem {
         SubType subType;
 
-        public ListItem(String text, SubType subType) {
+        ListItem(String text, SubType subType) {
             super(text);
             this.subType = subType;
         }

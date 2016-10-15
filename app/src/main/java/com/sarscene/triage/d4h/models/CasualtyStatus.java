@@ -1,12 +1,26 @@
 package com.sarscene.triage.d4h.models;
 
-import java.util.HashMap;
+import android.graphics.Color;
 
-public class CasualtyStatus {
+public enum CasualtyStatus {
+    MINOR(Color.GREEN, Color.BLACK),
+    DELAYED(Color.YELLOW, Color.BLACK),
+    IMMEDIATE(Color.RED, Color.BLACK),
+    DECEASED(Color.BLACK, Color.WHITE);
 
-    HashMap<String, Boolean> decisionFlow;
+    private int cardColor;
+    private int textColor;
 
-    public enum STATUS {
-        MINOR, DELAYED, IMMEDIATE, DECEASED;
+    CasualtyStatus(int cardColor, int textColor) {
+        this.cardColor = cardColor;
+        this.textColor = textColor;
+    }
+
+    public int getCardColor() {
+        return cardColor;
+    }
+
+    public int getTextColor() {
+        return textColor;
     }
 }
