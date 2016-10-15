@@ -13,6 +13,9 @@ Create the file `app/src/main/res/values/credentials.xml` with the following, an
 </resources>
 ```
 
+Change the organisation name in `sarscene/triage/app/src/main/java/com/sarscene/triage/d4h/api/APIManager.java`.
+This will be moved to the aformentionned config file eventually.
+
 ## Build
 
 

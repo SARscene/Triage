@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="22.0.0"
-        sha1="152c52d4ea5469cd41ac55614fd1f3d423fce1c0">
+        sha1="13302f030a9af1b082a47773fb9bf367b60202e6">
         <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/instant-run_355b1f153cb188f05df0ad6248bac8e844c6861c.jar" />
     </item>
     <item
@@ -61,7 +61,7 @@
         jumboMode="true"
         optimize="true"
         revision="22.0.0"
-        sha1="dc5ad18316e301dcdc17dcf4fccc98bc3a5dfc08">
+        sha1="55c03930801297572dc91d2aec863a29c9f7e292">
         <dex dex="/Users/tdtm/Sources/sarscene/triage/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_d45c38baeea96f7a35dc5a1106e276893ecada31.jar" />
     </item>
     <item

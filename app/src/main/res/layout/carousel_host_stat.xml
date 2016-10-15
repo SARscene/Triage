@@ -13,23 +13,11 @@
         android:textSize="32dp"
         tools:text="Title" />
 
-    <TextView
-        android:id="@+id/subtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:textSize="22dp"
-        tools:text="Subtitle" />
-
-
     <com.reconinstruments.ui.carousel.CarouselViewPager
         android:id="@+id/carousel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/subtitle"
+        android:layout_width="428px"
+        android:layout_height="200px"
         android:layout_below="@id/title"
+        android:gravity="center"
         auto:showBreadcrumbs="false" />
-
 </RelativeLayout>

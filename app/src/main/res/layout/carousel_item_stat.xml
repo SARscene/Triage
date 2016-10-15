@@ -7,13 +7,16 @@
         android:id="@+id/valuecontainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true">
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center">
         <!-- add equal sized space on left so that title can be centered and view is still measurable -->
 
         <TextView
             android:id="@+id/label"
-            android:layout_width="match_parent"
+            android:layout_width="428px"
             android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:padding="30px"
